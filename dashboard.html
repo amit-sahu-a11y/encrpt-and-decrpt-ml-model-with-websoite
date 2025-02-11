@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2 class="mb-4">Hello, {{ username }}!</h2>
+
+<div class="row">
+  <!-- Text Encryption/Decryption Card -->
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-header bg-primary text-white">
+        Text Encryption/Decryption
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{ url_for('process_text') }}">
+          <div class="mb-3">
+            <label for="text" class="form-label">Enter Text:</label>
+            <textarea class="form-control" name="text" rows="4" placeholder="Type your text here" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Select Action:</label>
+            <select class="form-select" name="action">
+              <option value="encrypt">Encrypt</option>
+              <option value="decrypt">Decrypt</option>
+            </select>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-success">Process Text</button>
+          </div>
+        </form>
+        {% if text_result is defined %}
+        <div class="mt-3">
+          <h5>Result:</h5>
+          <textarea class="form-control" rows="4" readonly>{{ text_result }}</textarea>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  <!-- File Encryption/Decryption Card -->
+  <div class="col-md-6 mb-4">
+    <div class="card h-100">
+      <div class="card-header bg-secondary text-white">
+        File Encryption/Decryption
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{ url_for('process_file') }}" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="file" class="form-label">Select File:</label>
+            <input type="file" class="form-control" name="file" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Select Action:</label>
+            <select class="form-select" name="action">
+              <option value="encrypt">Encrypt</option>
+              <option value="decrypt">Decrypt</option>
+            </select>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-success">Process File</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

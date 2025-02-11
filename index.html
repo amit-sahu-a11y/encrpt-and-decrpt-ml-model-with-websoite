@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Welcome to Encryption App{% endblock %}
+{% block content %}
+<div class="card text-center">
+  <div class="card-body">
+    <h1 class="card-title">Welcome to the Encryption App</h1>
+    <p class="card-text">Protect your data by encrypting and decrypting texts and files easily.</p>
+    <a href="{{ url_for('signin') }}" class="btn btn-primary mx-2">Sign In</a>
+    <a href="{{ url_for('signup') }}" class="btn btn-secondary mx-2">Sign Up</a>
+  </div>
+</div>
+{% endblock %}
